@@ -218,10 +218,10 @@ function Banner(){
         };
 	}
 	let colorArray= [
-        // '#B3AF47',
-        // '#99DDFF',
-        // '#FFFB80',
-        // '#FF6675',
+        '#B3AF47',
+        '#99DDFF',
+        '#FFFB80',
+        '#FF6675',
         '#B3505A'      
 	];
 	
