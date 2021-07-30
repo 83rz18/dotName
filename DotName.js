@@ -11,11 +11,17 @@ function DotName(){
 	var mouseOnScreen = false;	
 	var itertot = 500;
 	let colorArray = [
-	    '#B3AF47',
-	    '#99DDFF',
-	    '#FFFB80',
+	//reds
+		//'#e08297',//photo
 	    '#FF6675',
-	    '#B3505A'      
+	    '#B3505A',
+	//yellows
+		//'#fefa0b',//photo
+	    '#B3AF47',
+	    '#FFFB80',
+	//blues
+		'#b1bee9',//photo
+	    '#99DDFF'     
 	];
 	function addListenerMulti(element, eventNames, listener) {
 		var events = eventNames.split(' ');
@@ -39,6 +45,7 @@ function DotName(){
 		start();
 	}
 	var start = function(){
+		stopped = false;
 	    partStat = [];  
 	    parts = [];
 	    context = undefined;
@@ -113,9 +120,9 @@ function DotName(){
 		for (i = 0; i < partStat.length; i++){			
 			//Draw the circle
 			context.globalCompositeOperation='destination-over';
-			context.fillStyle = '#ad9F9F';
 			context.beginPath();
 			context.arc(partStat[i].x, partStat[i].y, partStat[i].z ,0 , Math.PI*2, true);
+			context.fillStyle = '#f4f8ff';
 			context.closePath();
 	    	context.fill();	
 			context.globalCompositeOperation='source-over';				
@@ -150,11 +157,19 @@ function DotName(){
 			context.strokeStyle = parts[i].c;
 			context.lineWidth = parts[i].z/100;
 			context.beginPath();
+			context.fillStyle = parts[i].c;
 			context.arc(parts[i].x, parts[i].y, parts[i].z ,0 , Math.PI*2, true);
 			context.closePath();
     		context.fill();	
-    		context.stroke();		
-		}	
+    		context.stroke();
+		}
+		//check for completion 
+		var moving = false;
+		for (i = 0; i < parts.length; i++){
+			if(parts[i].v.x + parts[i].v.y > 0.025){moving = true;}
+		}
+		if(!moving){clearInterval(animation);}
+			
 	}	
 	var MouseMove = function(e) {
 	    if (e.layerX || e.layerX == 0) {
