@@ -96,15 +96,18 @@ function DotName(){
 			}
 		)
 	}
+	var cleArray = function(array){
+		for (i = 0; i < array.length; i++){		
+  			context.clearRect(array[i].x-array[i].z-1, array[i].y-array[i].z-1, array[i].z*2+2, array[i].z*2+2);
+		}	
+	}
 	var update = function(){	
 		console.log('Update')		
 		var i, dx, dy, sqrDist, scale;	
-		for (i = 0; i < parts.length; i++){		
-  			context.clearRect(parts[i].x-parts[i].z-1, parts[i].y-parts[i].z-1, parts[i].z*2+2, parts[i].z*2+2);
-		}		
-		for (i = 0; i < partStat.length; i++){
-  			context.clearRect(partStat[i].x-partStat[i].z-1, partStat[i].y-partStat[i].z-1, partStat[i].z*2+2, partStat[i].z*2+2);
-		}
+
+		cleArray(parts);
+		cleArray(partStat);		
+
 
 		//draw static background dots
 		for (i = 0; i < partStat.length; i++){			
