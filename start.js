@@ -1,2 +1,2 @@
-var banner = new Banner();
-banner.initialize("canvas");
+var dotName = new DotName();
+dotName.initialize("canvas");
