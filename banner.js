@@ -1,25 +1,8 @@
 function Banner(){
 	// Opera 8.0+
 	var animation;
-	var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
-	// Firefox 1.0+
-	var isFirefox = typeof InstallTrigger !== 'undefined';
 
-	// Safari 3.0+ "[object HTMLElementConstructor]" 
-	var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-
-	// Internet Explorer 6-11
-	var isIE = /*@cc_on!@*/false || !!document.documentMode;
-
-	// Edge 20+
-	var isEdge = !isIE && !!window.StyleMedia;
-
-	// Chrome 1+
-	var isChrome = !!window.chrome && !!window.chrome.webstore;
-
-	// Blink engine detection
-	var isBlink = (isChrome || isOpera) && !!window.CSS;
 	function addListenerMulti(element, eventNames, listener) {
 	  var events = eventNames.split(' ');
 	  for (var i=0, iLen=events.length; i<iLen; i++) {
@@ -36,14 +19,14 @@ function Banner(){
 	    start();
 	});
 
-  //  var keyword = "rz";
+
 	var canvas;
 	var context;
 	
 	var bgCanvas;
 	var bgContext;
 	
-	var denseness = Math.ceil(window.innerWidth/500)*2+1;
+	var denseness;// = Math.ceil((window.innerWidth )/500)*2+1;
 	
 	//Each particle/icon
 	var parts = [];
@@ -55,7 +38,6 @@ function Banner(){
 	var itercount = 0;
 	var itertot = 500;
 
-	var img=document.getElementById("rz");
 	
 	this.initialize = function(canvas_id){
 		canvas = document.getElementById(canvas_id);
@@ -91,7 +73,7 @@ function Banner(){
 		var width = canvas.width;
 		var height = canvas.height;
 		var area = width*height;
-		
+		denseness = Math.ceil((window.innerWidth )/500)*2+1;
 
 	//top left
 	bgContext.moveTo(
@@ -189,7 +171,7 @@ function Banner(){
 	bgContext.strokeStyle = 'black'; 
 	bgContext.stroke();
 
-	clear();	
+
 	getCoords();
 
 
@@ -211,11 +193,9 @@ function Banner(){
                   		}
             		}
         	}
-    	if (true){
-            animation = setInterval( update, 3.5 )
-        }else{
-             update()
-        };
+
+            animation = setInterval( update, 3.5 );
+
 	}
 	let colorArray= [
         '#B3AF47',
@@ -239,7 +219,7 @@ function Banner(){
 			 y: y,
 			 r: false, //not released
 			 v:{x:velx , y: vely, z:0},
-			 z: Math.ceil(bgCanvas.width/500),
+			 z: denseness * 0.4,  // Math.ceil(bgCanvas.width/500),
 			 rank:0,
 			 counted:false
 			}
@@ -248,7 +228,7 @@ function Banner(){
 			{c: colorArray[Math.floor(Math.random() * colorArray.length)],
 			 x: x, //goal position
 			 y: y,
-			 z: Math.ceil(bgCanvas.width/500)
+			 z: denseness * 0.4// Math.ceil(bgCanvas.width/500)
 			}
 		)
 	}
@@ -292,7 +272,7 @@ function Banner(){
 			dx = parts[i].x - mouse.x;
 	        	dy = parts[i].y - mouse.y;
 	        	sqrDist =  Math.sqrt(dx*dx + dy*dy);
-			if (!isEdge&&!isFirefox&&!isIE&&sqrDist < 20 && parts[i].r === false){
+			if (sqrDist < 20 && parts[i].r === false){
 				parts[i].r = true;
 
 			} 			
@@ -492,21 +472,7 @@ function Banner(){
 	
 
 	
-	//Clear the on screen canvas
-	var clear = function(){
-		context.fillStyle = '#594F4F';
-		context.beginPath();
-  		context.clearRect(0, 0, canvas.width, canvas.height);
- 		context.closePath();
- 		context.fill();
-	/*
-		bgContext.fillStyle = '#594F4F';
-		bgContext.beginPath();
-  		bgContext.clearRect(0, 0, canvas.width, canvas.height);
- 		bgContext.closePath();
- 		bgContext.fill();
-    */
-	}
+
 	
 
 	
