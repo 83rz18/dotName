@@ -168,8 +168,7 @@ function DotName(){
 		for (i = 0; i < parts.length; i++){
 			if(parts[i].v.x + parts[i].v.y > 0.025){moving = true;}
 		}
-		if(!moving){clearInterval(animation);}
-			
+		if(!moving){clearInterval(animation);}			
 	}	
 	var MouseMove = function(e) {
 	    if (e.layerX || e.layerX == 0) {
