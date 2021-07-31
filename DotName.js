@@ -12,16 +12,16 @@ function DotName(){
 	var itertot = 500;
 	let colorArray = [
 	//reds
-		//'#e08297',//photo
-	    '#FF6675',
+		'#e08297',//photo
+	   // '#FF6675',
 	    '#B3505A',
 	//yellows
 		//'#fefa0b',//photo
-	    '#B3AF47',
+	    //'#B3AF47',
 	    '#FFFB80',
 	//blues
-		'#b1bee9',//photo
-	    '#99DDFF'     
+		//'#b1bee9',//photo
+	    //'#99DDFF'     
 	];
 	function addListenerMulti(element, eventNames, listener) {
 		var events = eventNames.split(' ');
@@ -122,7 +122,7 @@ function DotName(){
 			context.globalCompositeOperation='destination-over';
 			context.beginPath();
 			context.arc(partStat[i].x, partStat[i].y, partStat[i].z ,0 , Math.PI*2, true);
-			context.fillStyle = '#f4f8ff';
+			context.fillStyle = '#1a0f09';
 			context.closePath();
 	    	context.fill();	
 			context.globalCompositeOperation='source-over';				
